@@ -1,0 +1,263 @@
+html,
+body,
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  outline: none !important;
+}
+body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #5d6165;
+  background: #f5f5f5;
+  font-family: colfax, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+h4 {
+  margin: 5px 0 5px 0;
+}
+#header {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  padding: 0 16px;
+  /*Freshwater Network*/
+  /*background-color: #457545;*/
+  /*Coastal Resilience*/
+  background-color: #2f6384;
+  height: 55px;
+}
+#flex-container {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 55px);
+  width: 100vw;
+}
+#side-nav {
+  display: block;
+  position: relative;
+  z-index: 3;
+  width: 430px;
+  height: 100%;
+  transition: width 0.75s, height 0.75s;
+}
+#side-nav.hide-side-nav-width {
+  width: 0px;
+}
+#side-nav.hide-side-nav-height {
+  height: 0px;
+}
+#map-toggle {
+  width: 20px;
+  background: #6b6b6b;
+  font-size: 14px;
+  color: #ccc;
+  text-align: center;
+  box-shadow: 7px 0px 8px -2px rgba(51, 51, 51, 0.42);
+  z-index: 2;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  padding-top: 10px;
+  cursor: pointer;
+}
+#map-toggle:hover {
+  color: #ffffff;
+}
+.portrait-toggle {
+  display: none;
+}
+.landscape-toggle {
+  display: block;
+}
+#map-div {
+  flex: 1;
+  min-height: 40vh;
+  width: 100%;
+  position: relative;
+  border-bottom: #999 solid 1pt;
+}
+.esri-view .esri-view-surface--inset-outline:focus::after {
+  outline: none !important;
+}
+.esri-view .esri-view-surface--touch-none {
+  outline: none;
+}
+.esri-expand__container:focus {
+  outline: #457545 solid 1px !important;
+}
+.esri-expand__panel .esri-widget--button:focus {
+  outline: #457545 solid 1px !important;
+}
+
+.esri-search__input:focus {
+  outline: #457545 solid 1px;
+}
+.appTitle {
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  text-align: left;
+}
+.appSubTitle {
+  font-size: 17px;
+  color: #fff;
+  font-weight: 400;
+}
+#contentPane {
+  position: relative;
+  height: calc(100% - 2px);
+  overflow-y: auto;
+  display: block;
+  width: 100%;
+}
+.content-wrap {
+  padding: 10px;
+  postion: relative;
+}
+section:not(:first-child) {
+  margin-top: 10px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+#toggle-plugin-container {
+  position: absolute;
+  top: 15px;
+  right: -25px;
+  z-index: 2;
+  padding: 5px 9px 5px 7px;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 0 3px 3px 0;
+  box-shadow: 3px 3px 15px 0px rgba(51, 51, 51, 0.3);
+}
+.tpc-wrap i {
+  font-size: 13px;
+}
+.hide {
+  display: none;
+}
+.esri-popup__footer {
+  display: none;
+}
+.esri-popup--is-docked {
+  margin: 15px 15px 30px 35px;
+}
+.esri-popup__content {
+  line-height: 1.5;
+}
+.esri-view-width-xsmall .esri-expand--auto .esri-expand__mask--expanded {
+  display: none;
+}
+.save-and-share-wrap {
+  border-top: 1pt solid #ccc;
+  padding: 10px 20px;
+}
+/* .esri-ui-top-left {
+  top: -5px !important;
+  left: -5px !important;
+} */
+.esri-search {
+  width: 325px;
+  margin: 5px auto 5px auto !important;
+  border: 1px solid #6e6e6e7e;
+  border-radius: 3px;
+}
+
+/* living shorleines styles*/
+.ls-app-header {
+  font-weight: bold;
+  font-size: 20px;
+  width: 415px;
+  margin-left: -10px;
+  padding-left: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+.ls-app-header-icon {
+  box-shadow: 0.5px 1px 1px rgb(16 22 26 / 20%);
+  border: 1px solid #ddd;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+.ls-app-header-icon:hover {
+  cursor: pointer;
+  box-shadow: 0.5px 1px 1px rgb(16 22 26 / 30%);
+  background-color: #f3f3f3;
+}
+.ls-app-header-icon:active {
+  box-shadow: inset 0 1px 2px -1px rgb(0 0 0 / 20%);
+  background-color: #f3f3f3;
+}
+
+.ls-app-header-icon img {
+  width: 85%;
+  height: 85%;
+}
+.ls-pill-button {
+  width: 280px;
+  height: 40px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  margin: auto;
+  margin-bottom: 8px;
+  border: 1px solid rgba(51, 51, 51, 0.3);
+}
+.ls-pill-button:hover {
+  cursor: pointer;
+}
+.ls-info-overlay {
+  position: absolute;
+  width: 560px;
+  left: 50%;
+  top: 70px;
+  margin-left: -280px;
+  background: #fff;
+  z-index: 1000;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
+}
+.ls-overlay-inner {
+  padding: 10px;
+}
+.ls-info-overlay-text{
+  padding: 10px 11px 10px 11px;
+  font-size: 12px;
+}
+.ls-overlay-inner img {
+  height: 400px;
+}
+.ls-info-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+.intro-click{
+  cursor: pointer;
+  color: blue;
+}
+.fa-ellipsis-h{
+  font-size: 25px;
+}
+.button-bar-wrap{
+  text-align: center;
+  margin: 10px 0 0 0;
+}
+.button-bar-wrap .button{
+  padding: 1px;
+  width: 100px;
+}
+h2{
+  margin: 5px 0 10px 0;
+}

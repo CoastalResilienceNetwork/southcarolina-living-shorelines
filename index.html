@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="initial-scale=1,width=device-width,maximum-scale=1,user-scalable=no" />
+   <title>South Carolina</title>
+
+   <link rel="stylesheet" href="https://js.arcgis.com/4.16/esri/themes/light/main.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous"> 
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+   <link rel="stylesheet" href="css/styleguide.css">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/appComponents.css">
+   <link rel="stylesheet" href="css/responsive.css">
+   <link rel="stylesheet" href="css/saveAndShare.css">
+   <link rel="stylesheet" href="css/layerViewer.css">
+   <link rel="stylesheet" href="css/print.css" media="print">
+   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+   <script type="text/javascript">
+      let app = {};
+   </script>
+   <script type="text/javascript" src="https://kit.fontawesome.com/483252d290.js" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+      integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+   <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+   <script src="https://js.arcgis.com/4.16/"></script>
+</head>
+
+<body>
+   <div id="content-wrap">
+      <div class="ls-info-overlay" style="display: none;">
+         <div class="ls-overlay-inner">
+            <div class="ls-info-overlay-text"><b>Living Shoreline</b> means using natural techniques to protect your shoreline from erosion. A Living Shoreline enhances near-shore habitat while making your shoreline safer and more natural.</div>
+            <i class="fal fa-times ls-info-close"></i>
+            <div style="text-align: center; padding-bottom: 3px;">
+               <img src="./img/LS_Infographic.jpeg" alt="">
+            </div>
+         </div>
+      </div>
+      <header id="header">
+         <div class="appTitle">Coastal Resilience <span class="appSubTitle"> - South Carolina</span></div>
+         <!-- <div id="searchWidget"></div> -->
+      </header>
+      <div id="flex-container">
+         <div id="side-nav">
+            <div id="contentPane">
+               <div id="innerContent" class="flex1 content-wrap">
+
+                  <!-- <div class="ls-app-header"> -->
+                  <section>
+                     <h2>Living Shorelines</h2>
+                  </section>
+
+                  <section>
+                     <div class="app-intro-text">The Nature Conservancy has partnered with the South Carolina Department of Health and Environmental Control (DHEC) to help coastal property owners visualize energy conditions along South Carolina’s estuarine shorelines. <span class="intro-click" style="vertical-align: top;">Show more</span><span style="display:none;">The South Carolina Living Shoreline Explorer application provides users with a preliminary look at specific site conditions that are important to consider when determining if a site is suitable for a living shoreline. The application classifies shoreline energy levels associated with wind wave energy, boat wake energy, and maximum potential fetch. The information gathered through this tool can be used when planning for a potential living shoreline project and during initial permitting discussions with regulatory agencies. The instructions and methods documents below provide additional information on this project, instructions for using the application, and methods used to classify shoreline energy levels. For more information on living shorelines, visit the <a href="https://www.clemson.edu/living-shorelines" target="_blank">SC Living Shoreline</a> website. For permitting guidance, please visit <a href="https://scdhec.gov/environment/your-water-coast/ocean-coastal-resource-management-ocrm/living-shorelines-regulations-update" target="_blank">DHEC’s living shoreline</a> website. <span style="display:none;" class="intro-click">Show Less</span></span></div>
+                     <div class="button-bar-wrap">
+                        <button class="button button-primary" id="summary-btn">Instructions</button>
+                        <button class="button button-primary" id="methods-btn">Methods</button>
+                        <button class="button button-primary ls-info-open">Infographic</button>
+                     </div>
+                  </section>
+                  <section>
+                     <h4>To get started, use the search bar below to navigate to a property address, or manually zoom to an area using the map on the right. </h4>
+                     <div id="ls-search-bar" class="ls-search-bar"></div>
+                  </section>
+                  <section>
+                     <div class="layer-viewer-overmap-label">Estuarine Shoreline Energy Conditions</div>
+                     <div id="suit-factor-toggle" class="toggle-btn" style="width:100%">
+                        <input type="radio" id="num1" name="suitFact" value="lineWaveLayer"/>
+                        <label for="num1">Wind Wave Energy</label>
+                        <input type="radio" id="num2" name="suitFact" value="lineBoatLayer"/>
+                        <label for="num2">Boat Wake Energy</label>
+                        <input type="radio" id="num3" name="suitFact" value="lineMaxLayer"/>
+                        <label for="num3">Max Fetch</label>
+                     </div>
+                  </section>
+                  <section id="sidebar-wrap"></section>
+                  <section>
+                     <div class="button-bar-wrap">
+                        <button class="button button-primary" id="report-btn">Create Report</button>
+                        <button class="button button-primary" id="sands-btn">Save & Share</button>
+                     </div>
+                  </section>
+               </div>
+            </div>
+         </div>
+         <div id="map-toggle">
+            <div class="landscape-toggle">
+               <span><i style="margin-bottom: 10px;" class="fas fa-chevron-left"></i>HIDE</span>
+               <span class="hide"><i style="margin-bottom: 10px;" class="fas fa-chevron-right"></i>SHOW</span>
+               <span>CONTROLS<i style="margin-top: 10px;" class="fas fa-chevron-left"></i></span>
+               <span class="hide">CONTROLS<i style="margin-top: 10px;" class="fas fa-chevron-right"></i></span>
+            </div>
+            <div class="portrait-toggle">
+               <span><i style="margin-right: 10px;" class="fas fa-chevron-down"></i>HIDE</span>
+               <span class="hide"><i style="margin-right: 10px;" class="fas fa-chevron-up"></i>SHOW</span>
+               <span>CONTROLS<i style="margin-left: 10px;" class="fas fa-chevron-down"></i></span>
+               <span class="hide">CONTROLS<i style="margin-left: 10px;" class="fas fa-chevron-up"></i></span>
+            </div>
+         </div>
+         <div id="map-div">
+            <div id="viewDiv"></div>
+         </div>
+      </div>
+   </div>
+   <div id="report-div">
+      <h3>Estuarine Shoreline Energy Conditions</h3>
+      <h4>Latitiude: <span id="report-lat"></span>, Longitude <span id="report-long"></span></h4>
+      <div id="report-instructions-wrap"> 
+         <div>Pan and zoom the Wind Wave Energy map to update the extent of all three maps.</div>  
+         <div id="report-button-bar-wrap">
+            <button class="button button-primary" id="print-report-btn">Print Report</button>
+            <button class="button button-primary" id="close-report-btn">Close Report</button>
+         </div>
+      </div>
+      <div class="report-maps-wrap">   
+         <div class=left-report>
+            <div>
+               <h4>Wind Wave Energy</h4>
+               <div class="report-map-wrap" id="report-map-wind">
+                  <div id="report-map-wind-view" class="report-map-view"></div>
+               </div>
+            </div>
+            <div style="margin-left: 20px;">
+               <h4>Boat Wake Energy</h4>
+               <div class="report-map-wrap" id="report-map-boat">
+                  <div id="report-map-boat-view" class="report-map-view"></div>
+               </div>
+            </div>
+            <div>
+               <h4>Max Fetch</h4>
+               <div class="report-map-wrap" id="report-map-max">
+                  <div id="report-map-max-view" class="report-map-view"></div>
+               </div>
+            </div>
+             <div id="report-legend-wind" class="report-legend"></div>
+         </div>
+         <div class="right-report">
+            <h4>Additional Layers</h4>
+            <div id="report-additional-layers-legend"></div>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      // toggle map
+      document.querySelector(`#map-toggle`).addEventListener('click', (() => {
+         document.querySelectorAll(`#map-toggle span`).forEach(span => {
+            span.classList.toggle("hide")
+         })
+         if (app.mobile) {
+            document.querySelector(`#side-nav`).classList.toggle("hide-side-nav-height");
+         } else {
+            document.querySelector(`#side-nav`).classList.toggle("hide-side-nav-width");
+         }
+      }))
+   </script>
+   <!-- <script src="js/featureLayers.js"></script> -->
+   <script src="js/buildElements.js"></script>
+   <script src="js/eventListeners.js"></script>
+   <script src="js/variables.js"></script>
+   <script src="js/map.js"></script>
+   <script src="js/mapClick.js"></script>
+   <script src="js/saveAndShare.js"></script>
+   <script src="js/layerViewer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+#report-div{
+    box-shadow: unset !important;
+}
+.esri-zoom, #report-instructions-wrap{
+    display: none !important;
+}
